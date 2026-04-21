@@ -1,0 +1,12 @@
+2026-04-20 19:18:43.619 CST [11980] LOG:  iniciando PostgreSQL 16.4, compiled by Visual C++ build 1940, 64-bit
+2026-04-20 19:18:43.625 CST [11980] LOG:  escuchando en la direcciÅLon IPv6 <<::1>>, port 5433
+2026-04-20 19:18:43.626 CST [11980] LOG:  escuchando en la direcciÅLon IPv4 <<127.0.0.1>>, port 5433
+2026-04-20 19:18:43.719 CST [4748] LOG:  el sistema de bases de datos fue apagado en 2026-04-20 19:18:27 CST
+2026-04-20 19:18:43.746 CST [11980] LOG:  el sistema de bases de datos estÅLa listo para aceptar conexiones
+2026-04-20 19:22:01.578 CST [11980] LOG:  se recibiÅLo peticiÅLon de apagado rÅLapido
+2026-04-20 19:22:01.584 CST [11980] LOG:  abortando transacciones activas
+2026-04-20 19:22:01.590 CST [11980] LOG:  proceso ayudante <<logical replication launcher>> (PID 7248) terminÅLo con cÅLodigo de salida 1
+2026-04-20 19:22:01.595 CST [13952] LOG:  apagando
+2026-04-20 19:22:01.599 CST [13952] LOG:  empezando checkpoint: shutdown immediate
+2026-04-20 19:22:01.824 CST [13952] LOG:  checkpoint complete: wrote 122 buffers (0.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.041 s, sync=0.167 s, total=0.229 s; sync files=66, longest=0.005 s, average=0.003 s; distance=472 kB, estimate=472 kB; lsn=0/15E3860, redo lsn=0/15E3860
+2026-04-20 19:22:02.047 CST [11980] LOG:  el sistema de bases de datos estÅLa apagado

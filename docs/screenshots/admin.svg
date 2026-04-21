@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+  <rect width="1280" height="800" fill="#0a0e1a"/>
+  <rect x="0" y="0" width="260" height="800" fill="#111827"/>
+  <rect x="296" y="24" width="960" height="88" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <rect x="296" y="136" width="220" height="150" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <rect x="540" y="136" width="220" height="150" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <rect x="784" y="136" width="220" height="150" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <rect x="1028" y="136" width="220" height="150" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <rect x="296" y="312" width="952" height="428" rx="20" fill="#111827" stroke="#1e2d45"/>
+  <text x="340" y="78" fill="#f1f5f9" font-family="Inter, sans-serif" font-size="30" font-weight="700">Admin dashboard</text>
+  <text x="330" y="200" fill="#64748b" font-family="Inter, sans-serif" font-size="18">Total Users</text>
+  <text x="330" y="246" fill="#38bdf8" font-family="Inter, sans-serif" font-size="42" font-weight="800">12</text>
+  <text x="574" y="200" fill="#64748b" font-family="Inter, sans-serif" font-size="18">Successful Logins</text>
+  <text x="574" y="246" fill="#34d399" font-family="Inter, sans-serif" font-size="42" font-weight="800">48</text>
+  <text x="818" y="200" fill="#64748b" font-family="Inter, sans-serif" font-size="18">Failed Attempts</text>
+  <text x="818" y="246" fill="#f87171" font-family="Inter, sans-serif" font-size="42" font-weight="800">3</text>
+  <text x="1062" y="200" fill="#64748b" font-family="Inter, sans-serif" font-size="18">Active Sessions</text>
+  <text x="1062" y="246" fill="#818cf8" font-family="Inter, sans-serif" font-size="42" font-weight="800">5</text>
+</svg>

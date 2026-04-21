@@ -1,0 +1,5 @@
+node_modules/
+.pgtestdata/
+.pgtest.log
+.env
+.DS_Store

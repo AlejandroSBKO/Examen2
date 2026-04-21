@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureVault - Admin</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body data-page="admin">
+    <div class="layout-shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark" aria-hidden="true">SV</div>
+          <div>
+            <h2 class="section-title">SecureVault</h2>
+            <p class="muted">Panel del administrador</p>
+          </div>
+        </div>
+
+        <nav class="nav-list" id="sidebarNav">
+          <a href="#dashboard" class="nav-link active" data-tab="dashboard">Dashboard</a>
+          <a href="#users" class="nav-link" data-tab="users">Users</a>
+          <a href="#logs" class="nav-link" data-tab="logs">Logs</a>
+          <a href="#sessions" class="nav-link" data-tab="sessions">Session Monitor</a>
+        </nav>
+
+        <div class="card-footer">
+          <div class="muted">Tema</div>
+          <button class="btn secondary small" id="themeToggle">Cambiar modo</button>
+        </div>
+      </aside>
+
+      <main class="main-shell">
+        <header class="topbar">
+          <div class="brand-copy">
+            <h1 class="section-title">Admin dashboard</h1>
+            <p>Supervisión de accesos, sesiones y usuarios en tiempo real</p>
+          </div>
+          <div class="topbar-right">
+            <div class="live-clock" id="liveClock">--:--:--</div>
+            <div class="avatar" id="adminAvatar">A</div>
+            <div>
+              <div id="adminName">admin</div>
+              <div class="muted">Administrador</div>
+            </div>
+            <button class="btn secondary small" id="logoutButton">Cerrar sesión</button>
+          </div>
+        </header>
+
+        <section class="content dashboard-grid">
+          <section class="panel" id="panel-dashboard">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Resumen general</h2>
+                <p class="muted">Métricas clave y actividad reciente</p>
+              </div>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value" data-counter="total_users">0</div>
+                <div class="stat-note">Usuarios registrados en la base de datos</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-label">Successful Logins Today</div>
+                <div class="stat-value" data-counter="successful_logins_today">0</div>
+                <div class="stat-note">Bitácoras ACCESS_OK del día</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-label">Failed Attempts Today</div>
+                <div class="stat-value" data-counter="failed_attempts_today">0</div>
+                <div class="stat-note">Bitácoras ACCESS_FAIL del día</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-label">Active Sessions</div>
+                <div class="stat-value" data-counter="active_sessions">0</div>
+                <div class="stat-note">Sesiones válidas en PostgreSQL</div>
+              </article>
+            </div>
+
+            <div class="two-col" style="margin-top: 18px;">
+              <div class="panel">
+                <div class="section-head">
+                  <div>
+                    <h3 class="section-title">Recent activity</h3>
+                    <p class="muted">Línea de tiempo compacta</p>
+                  </div>
+                </div>
+                <div id="recentActivity" class="timeline"></div>
+              </div>
+              <div class="panel">
+                <div class="section-head">
+                  <div>
+                    <h3 class="section-title">Notas</h3>
+                    <p class="muted">Sesiones, auditoría y demo de seguridad</p>
+                  </div>
+                </div>
+                <div class="notice">
+                  <strong>Observa los tres streams</strong>
+                  <p class="muted">Cada bitácora se consulta de forma independiente y las sesiones sospechosas se resaltan en naranja.</p>
+                </div>
+                <div class="notice" style="margin-top: 12px;">
+                  <strong>Live clock</strong>
+                  <p class="muted">El reloj del encabezado se sincroniza con el servidor y se actualiza cada segundo.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel hidden" id="panel-users">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Users</h2>
+                <p class="muted">Activar o desactivar cuentas sin borrarlas</p>
+              </div>
+            </div>
+            <div id="usersList" class="user-list"></div>
+          </section>
+
+          <section class="panel hidden" id="panel-logs">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Logs</h2>
+                <p class="muted">Tres vistas independientes y exportables</p>
+              </div>
+              <div class="tabs" id="logTabs">
+                <button class="tab-button active" data-log-tab="ACCESS_OK">✅ Acceso Correcto</button>
+                <button class="tab-button" data-log-tab="ACCESS_FAIL">❌ Acceso Fallido</button>
+                <button class="tab-button" data-log-tab="LOGOUT">🚪 Cierres de Sesión</button>
+              </div>
+            </div>
+
+            <div class="filter-bar" style="margin-bottom: 14px;">
+              <div class="field"><input type="date" id="logFrom" placeholder=" " /><label for="logFrom">Desde</label></div>
+              <div class="field"><input type="date" id="logTo" placeholder=" " /><label for="logTo">Hasta</label></div>
+              <div class="field"><input type="search" id="logSearch" placeholder=" " /><label for="logSearch">Buscar usuario</label></div>
+              <div class="inline-row" style="align-items:end; justify-content:flex-end;">
+                <button class="btn secondary small" id="refreshLogs">Actualizar</button>
+                <button class="btn small" id="exportLogs">Exportar CSV</button>
+              </div>
+            </div>
+
+            <div class="table-card">
+              <div class="scroll-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Username</th>
+                      <th>IP</th>
+                      <th>Browser / UA</th>
+                      <th>Session ID</th>
+                      <th>Timestamp</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="logsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel hidden" id="panel-sessions">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Session Monitor</h2>
+                <p class="muted">Sesiones activas y sospechosas</p>
+              </div>
+            </div>
+            <div class="table-card">
+              <div class="scroll-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Session ID</th>
+                      <th>User</th>
+                      <th>Role</th>
+                      <th>Login IP</th>
+                      <th>User-Agent</th>
+                      <th>Expire</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sessionsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

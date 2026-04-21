@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureVault - User</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body data-page="user">
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-copy">
+          <h1 class="section-title">User dashboard</h1>
+          <p>Acceso individual con monitoreo de sesión</p>
+        </div>
+        <div class="topbar-right">
+          <div class="session-timer" id="sessionTimer">00:00:00</div>
+          <button class="btn secondary small" id="themeToggle">Cambiar modo</button>
+          <button class="btn secondary small" id="logoutButton">Cerrar sesión</button>
+        </div>
+      </header>
+
+      <main class="content dashboard-grid">
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title" id="welcomeTitle">Hello!</h2>
+              <p class="muted">Tu sesión y actividad reciente</p>
+            </div>
+          </div>
+
+          <div id="suspiciousBanner" class="banner warning hidden"></div>
+
+          <div class="two-col" style="margin-top: 18px;">
+            <div class="info-card">
+              <div class="section-head">
+                <h3 class="section-title">Session details</h3>
+                <span class="badge info" id="roleBadge">role</span>
+              </div>
+              <div class="copy-row">
+                <div>
+                  <div class="muted">Session ID</div>
+                  <div class="session-id" id="sessionIdValue">loading...</div>
+                </div>
+                <button class="copy-chip" id="copySessionId">Copy</button>
+              </div>
+              <div style="margin-top: 14px;" class="scroll-list">
+                <div><span class="muted">Login time: </span><strong id="loginTimeValue">-</strong></div>
+                <div><span class="muted">IP address: </span><strong id="loginIpValue">-</strong> <span class="flag-badge" id="ipFlag">🏳️</span></div>
+                <div><span class="muted">User-Agent: </span><strong id="userAgentValue">-</strong></div>
+              </div>
+            </div>
+
+            <div class="warning-box">
+              <strong>⚠️ SESSION HIJACKING DEMO</strong>
+              <p>
+                Copia tu Session ID y pégalo manualmente como una cookie llamada <strong>connect.sid</strong> en otro navegador.
+                Si el servidor no detectara la anomalía, el atacante ganaría acceso completo.
+              </p>
+              <p class="muted">
+                También puedes abrir DevTools, ir a Application &gt; Cookies y reproducir la sustitución de la cookie para observar la alerta de seguridad.
+              </p>
+              <p class="muted">El monitor marcará la actividad como sospechosa cuando cambien simultáneamente IP y navegador.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <h3 class="section-title">Your recent activity</h3>
+              <p class="muted">Últimas 5 entradas del usuario</p>
+            </div>
+          </div>
+          <div id="activityList" class="activity-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureVault - Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body data-page="login">
+    <div class="page-shell auth-screen">
+      <div class="auth-backdrop">
+        <div class="particles" id="particleField"></div>
+        <div class="matrix-rain" id="matrixRain"></div>
+      </div>
+
+      <div class="glass-card card-pad fade-in" id="authCard">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"></path>
+              <path d="M9 12l2 2 4-5"></path>
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <h1>SecureVault</h1>
+            <p>Access Control System</p>
+          </div>
+        </div>
+
+        <div class="hero-tag">
+          Controla accesos, audita sesiones y observa una demostración guiada de secuestro de sesión sin perder el diseño de vista.
+        </div>
+
+        <form id="loginForm" class="form-grid" novalidate>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required />
+            <label for="email">Correo electrónico</label>
+          </div>
+          <div class="field">
+            <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" required />
+            <label for="password">Contraseña</label>
+          </div>
+
+          <div class="login-options">
+            <label class="switch">
+              <input type="checkbox" id="soundToggle" />
+              <span>Sonido suave al iniciar sesión</span>
+            </label>
+            <a class="link" href="/register">Crear cuenta</a>
+          </div>
+
+          <button id="loginButton" class="btn" type="submit">
+            <span class="btn-text">Iniciar sesión</span>
+          </button>
+        </form>
+
+        <div id="sessionInfo" class="session-panel hidden" aria-live="polite"></div>
+        <div class="auth-footer">
+          Acceso de prueba: <strong>admin@system.com</strong> / <strong>Admin@12345</strong>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

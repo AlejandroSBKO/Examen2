@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureVault - Registro</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body data-page="register">
+    <div class="page-shell auth-screen">
+      <div class="auth-backdrop">
+        <div class="particles" id="particleField"></div>
+        <div class="matrix-rain" id="matrixRain"></div>
+      </div>
+
+      <div class="glass-card card-pad fade-in" id="authCard">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"></path>
+              <path d="M7 12h10"></path>
+              <path d="M12 7v10"></path>
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <h1>Crear cuenta</h1>
+            <p>Registro seguro para SecureVault</p>
+          </div>
+        </div>
+
+        <form id="registerForm" class="form-grid" novalidate>
+          <div class="field">
+            <input type="text" id="username" name="username" placeholder=" " autocomplete="username" required maxlength="30" />
+            <label for="username">Usuario</label>
+            <span class="field-status" data-status-for="username"></span>
+          </div>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required />
+            <label for="email">Correo electrónico</label>
+            <span class="field-status" data-status-for="email"></span>
+          </div>
+          <div class="field">
+            <input type="password" id="password" name="password" placeholder=" " autocomplete="new-password" required />
+            <label for="password">Contraseña</label>
+            <span class="field-status" data-status-for="password"></span>
+          </div>
+          <div class="field">
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder=" " autocomplete="new-password" required />
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <span class="field-status" data-status-for="confirmPassword"></span>
+          </div>
+
+          <div class="strength">
+            <div class="strength-meter"><div id="strengthFill" class="strength-fill"></div></div>
+            <div id="strengthLabel" class="strength-label">Fuerza de contraseña: muy débil</div>
+          </div>
+
+          <button id="registerButton" class="btn" type="submit">
+            <span class="btn-text">Registrarme</span>
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          ¿Ya tienes cuenta? <a href="/">Volver al login</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

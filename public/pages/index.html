@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SecureVault - Login</title>
+    <title>NovaFlow Access | Entrada</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body data-page="login">
@@ -13,50 +13,81 @@
         <div class="matrix-rain" id="matrixRain"></div>
       </div>
 
-      <div class="glass-card card-pad fade-in" id="authCard">
-        <div class="brand-row">
-          <div class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"></path>
-              <path d="M9 12l2 2 4-5"></path>
-            </svg>
-          </div>
-          <div class="brand-copy">
-            <h1>SecureVault</h1>
-            <p>Access Control System</p>
-          </div>
-        </div>
+      <div class="login-layout">
+        <section class="login-hero fade-in" aria-labelledby="loginHeroTitle">
+          <div class="login-kicker">NovaFlow Access</div>
+          <h1 id="loginHeroTitle">Una puerta de entrada limpia, rápida y visualmente distinta.</h1>
+          <p>
+            Interfaz renovada para autenticación, con una lectura más clara, una marca nueva y un fondo más editorial.
+          </p>
 
-        <div class="hero-tag">
-          Controla accesos, audita sesiones y observa una demostración guiada de secuestro de sesión sin perder el diseño de vista.
-        </div>
-
-        <form id="loginForm" class="form-grid" novalidate>
-          <div class="field">
-            <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required />
-            <label for="email">Correo electrónico</label>
-          </div>
-          <div class="field">
-            <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" required />
-            <label for="password">Contraseña</label>
+          <div class="hero-stats" aria-label="Resumen del acceso">
+            <article>
+              <strong>01</strong>
+              <span>Entrada guiada</span>
+            </article>
+            <article>
+              <strong>02</strong>
+              <span>Sesión auditada</span>
+            </article>
+            <article>
+              <strong>03</strong>
+              <span>Acceso seguro</span>
+            </article>
           </div>
 
-          <div class="login-options">
-            <label class="switch">
-              <input type="checkbox" id="soundToggle" />
-              <span>Sonido suave al iniciar sesión</span>
-            </label>
-            <a class="link" href="/register">Crear cuenta</a>
+          <ul class="hero-points">
+            <li>Diseño más limpio, con foco total en el formulario.</li>
+            <li>Marca y tono visual nuevos para no parecer la pantalla anterior.</li>
+            <li>Experiencia adaptable sin cambiar la lógica del login.</li>
+          </ul>
+        </section>
+
+        <div class="glass-card card-pad fade-in login-card" id="authCard">
+          <div class="brand-row login-brand-row">
+            <div class="brand-mark login-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l7 4v6c0 4.5-3.2 8-7 10-3.8-1.8-7-5.2-7-10V7l7-4z"></path>
+                <path d="M8.5 12.5L11 15l5-6"></path>
+              </svg>
+            </div>
+            <div class="brand-copy">
+              <h1>NovaFlow</h1>
+              <p>Portal de acceso</p>
+            </div>
           </div>
 
-          <button id="loginButton" class="btn" type="submit">
-            <span class="btn-text">Iniciar sesión</span>
-          </button>
-        </form>
+          <div class="hero-tag login-tag">
+            Verifica tus credenciales para continuar en el panel privado.
+          </div>
 
-        <div id="sessionInfo" class="session-panel hidden" aria-live="polite"></div>
-        <div class="auth-footer">
-          Acceso de prueba: <strong>admin@system.com</strong> / <strong>Admin@12345</strong>
+          <form id="loginForm" class="form-grid" novalidate>
+            <div class="field">
+              <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required />
+              <label for="email">Correo electrónico</label>
+            </div>
+            <div class="field">
+              <input type="password" id="password" name="password" placeholder=" " autocomplete="current-password" required />
+              <label for="password">Contraseña</label>
+            </div>
+
+            <div class="login-options">
+              <label class="switch">
+                <input type="checkbox" id="soundToggle" />
+                <span>Sonido suave al iniciar sesión</span>
+              </label>
+              <a class="link" href="/register">Crear cuenta</a>
+            </div>
+
+            <button id="loginButton" class="btn login-submit" type="submit">
+              <span class="btn-text">Entrar al portal</span>
+            </button>
+          </form>
+
+          <div id="sessionInfo" class="session-panel hidden" aria-live="polite"></div>
+          <div class="auth-footer login-footer">
+            Acceso de prueba: <strong>admin@system.com</strong> / <strong>Admin@12345</strong>
+          </div>
         </div>
       </div>
     </div>

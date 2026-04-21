@@ -88,6 +88,8 @@ npm start
 3. Crea un nuevo Web Service apuntando al repo.
 4. Añade una base PostgreSQL gratuita.
 5. Configura `SESSION_SECRET` y `DATABASE_URL`.
+  - Si usas el `render.yaml` como Blueprint, `SESSION_SECRET` se genera automáticamente.
+  - Si creaste el servicio manualmente, debes agregar `SESSION_SECRET` en Variables de Entorno.
 6. Verifica que `render.yaml` esté en la raíz del proyecto.
 7. Ejecuta el esquema una sola vez con el endpoint protegido:
 

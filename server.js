@@ -13,6 +13,11 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const app = express();
 const port = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
+const sessionSecret = process.env.SESSION_SECRET;
+
+if (!sessionSecret) {
+  throw new Error('SESSION_SECRET is required. Define it in Render environment variables or .env before starting the app.');
+}
 
 app.set('trust proxy', 1);
 app.use(helmet({ contentSecurityPolicy: false }));
@@ -29,7 +34,7 @@ const sessionStore = new PgSession({
 app.use(
   session({
     store: sessionStore,
-    secret: process.env.SESSION_SECRET,
+    secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -60,6 +65,32 @@ app.get('/setup', async (req, res) => {
     return res.status(500).json({ success: false, message: 'No se pudo ejecutar el esquema.' });
   }
 });
+
+async function ensureSchema() {
+  const requiredTables = ['users', 'session', 'logs'];
+
+  try {
+    const result = await pool.query(
+      `SELECT table_name FROM information_schema.tables
+       WHERE table_schema = 'public' AND table_name = ANY($1::text[])`,
+      [requiredTables]
+    );
+
+    const existingTables = new Set(result.rows.map((row) => row.table_name));
+    const schemaMissing = requiredTables.some((tableName) => !existingTables.has(tableName));
+
+    if (!schemaMissing) {
+      return;
+    }
+
+    const schemaPath = path.join(__dirname, 'db', 'schema.sql');
+    const schemaSql = fs.readFileSync(schemaPath, 'utf8');
+    await pool.query(schemaSql);
+    console.log('Schema auto-applied at startup.');
+  } catch (error) {
+    console.error('Schema bootstrap skipped or failed:', error.message);
+  }
+}
 
 app.use((req, res) => {
   if (req.originalUrl.startsWith('/api/')) {
@@ -106,6 +137,15 @@ app.use((error, req, res, next) => {
   `);
 });
 
-app.listen(port, () => {
-  console.log(`Secure Auth App listening on port ${port}`);
+async function startServer() {
+  await ensureSchema();
+
+  app.listen(port, () => {
+    console.log(`Secure Auth App listening on port ${port}`);
+  });
+}
+
+startServer().catch((error) => {
+  console.error('Failed to start server:', error);
+  process.exit(1);
 });
